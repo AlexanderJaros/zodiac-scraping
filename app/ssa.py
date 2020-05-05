@@ -2,6 +2,17 @@ from bs4 import BeautifulSoup
 import requests
 
 def ssa_scrape(name, sex): 
+    """
+    Takes user inputted baby name and sex and insert into Social Security Admin website form to retrieve name popularity data.
+    
+    Params:
+        Name (string); chosen first name of babay
+        Sex (string); abbreivated Male as "M" or Female as "F"
+    
+    Examples:
+        ssa_scrape("John", "M")
+        ssa_scrape("Sarah", "F")
+    """
     request_url = "https://www.ssa.gov/cgi-bin/babyname.cgi"
     params = {"name": name, "sex": sex}
     response = requests.post(request_url, params)
