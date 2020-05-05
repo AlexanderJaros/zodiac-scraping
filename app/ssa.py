@@ -10,12 +10,16 @@ import requests
 #    return soup
 
 def ssa_scrape(name, sex): 
-    request_url = "https://www.ssa.gov/cgi-bin/babyname.cgi"
-    params = {"name": name, "sex": sex}
-    response = requests.post(request_url, params)
-    soup = BeautifulSoup(response.text, "html.parser")
-    facts = soup.body.find("ul")
-    return facts.text
+    while True:
+        request_url = "https://www.ssa.gov/cgi-bin/babyname.cgi"
+        params = {"name": name, "sex": sex}
+        response = requests.post(request_url, params)
+        soup = BeautifulSoup(response.text, "html.parser")
+        if not "Please enter another name." in soup.text:
+            facts = soup.body.find("ul")
+            return facts.text
+        else:
+            return "Heg is not in the top 1000 names for any year of birth beginning with 2000. Please enter another name."
 
 if __name__ == "__main__":
 
