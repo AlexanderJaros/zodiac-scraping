@@ -22,3 +22,17 @@ From within the virtual environment, demonstrate your ability to run the Python 
 ```py
 FLASK_APP=web_app flask run
 ```
+
+## Tests
+
+Install pytest package (first time only):
+
+```sh
+pip install pytest
+```
+
+Run tests:
+
+```sh
+pytest --disable-pytest-warnings
+```
